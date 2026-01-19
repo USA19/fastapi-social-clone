@@ -17,7 +17,7 @@ def create_post(
 ):
     post = Post(
         **payload.model_dump(),
-        user_id=current_user.id,
+        userId=current_user.id,
     )
 
     db.add(post)
