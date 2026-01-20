@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from models.user import User
+from models.post import Post
+from models.comment import Comment
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

@@ -5,6 +5,8 @@ from contextlib import asynccontextmanager
 from db.session import engine
 from routes.user import router as userRouter
 from routes.post import router as postRouter
+from routes.comment import router as commentRouter
+
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
 import os
@@ -31,3 +33,4 @@ def custom_swagger():
 
 app.include_router(userRouter)
 app.include_router(postRouter)
+app.include_router(commentRouter)
