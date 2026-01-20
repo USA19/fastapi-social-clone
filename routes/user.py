@@ -3,7 +3,7 @@ from schemas.user import CreateUserInput,LoginInput,UserLoginOutput,UserRegister
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from db.session import get_db  
-from auth.jwt import get_current_user
+from middleware.auth import get_current_user
 from models.user import User
 from datetime import datetime, timedelta
 from jose import jwt

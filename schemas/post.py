@@ -26,7 +26,7 @@ class PostSchema(BaseModel):
         from_attributes = True
 
 class PostOutput(BaseModel):
-    post:PostSchema
+    post:Optional[PostSchema]
     message:str
     class Config:
       from_attributes = True
