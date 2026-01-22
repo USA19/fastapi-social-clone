@@ -23,10 +23,16 @@ class Comment(Base):
     user = relationship("User", backref="comments")
     post = relationship("Post", backref="comments")
     # Replies: child comments that have this comment as their parent
-    replies = relationship(
-        "Comment", 
-        backref="parent",
-        cascade="all, delete", 
+    # 🔥 FIXED self-referential relationships
+    parent = relationship(
+        "Comment",
         remote_side=[id],
-        lazy="select"
+        back_populates="replies"
+    )
+
+    replies = relationship(
+        "Comment",
+        back_populates="parent",
+        cascade="all, delete-orphan",
+        lazy="selectin"
     )

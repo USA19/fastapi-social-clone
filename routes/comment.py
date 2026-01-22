@@ -15,8 +15,15 @@ router = APIRouter(prefix="/comments", tags=["Comments"])
 def get_comments(postId: UUID, db: Session = Depends(get_db)):
     comments = (
         db.query(Comment)
-        .options(joinedload(Comment.user), joinedload(Comment.replies).joinedload(Comment.user))
-        .filter(Comment.postId == postId, Comment.parentId == None)
+        .filter(
+            Comment.postId == postId,
+            Comment.parentId.is_(None)   # root comments only
+        )
+        .options(
+            selectinload(Comment.user),
+            selectinload(Comment.replies).selectinload(Comment.user)
+        )
+        .order_by(Comment.created_at.asc())
         .all()
     )
     return {"comment": comments, "message": "Comments fetched successfully"}

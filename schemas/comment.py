@@ -1,6 +1,6 @@
 # schemas/comment.py
-from pydantic import BaseModel, Field, field_validator, model_validator
-from typing import List, Optional, Any
+from pydantic import BaseModel
+from typing import List, Optional
 from uuid import UUID
 from datetime import datetime
 from .user import UserOutput  # assuming you already have a user output schema
